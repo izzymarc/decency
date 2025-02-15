@@ -1,34 +1,753 @@
 body {
-  /* ... body styles ... */
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif; /* Modern, readable font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fefefe; /* Very light, almost white background */
+  color: #3a3a3a; /* Darker, more professional text color */
+  line-height: 1.7;
 }
 
 .app {
-  /* ... app styles ... */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* Navigation Bar - More Professional Style */
 nav {
-  /* ... nav styles ... */
+  background-color: #fff;
+  padding: 20px 30px; /* Increased horizontal padding */
+  border-bottom: 1px solid #e8e8e8; /* Lighter border */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.08); /* Softer shadow */
 }
 
-/* ... other existing styles ... */
+nav .logo {
+  font-size: 2rem;
+  font-weight: 700; /* Bold logo text */
+  color: #2d2d2d; /* Dark logo color */
+  text-decoration: none; /* Remove underline if logo is a link */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li {
+  margin-left: 30px; /* Increased spacing between nav links */
+}
+
+nav ul li:first-child {
+  margin-left: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #5b5b5b; /* Muted link color */
+  padding: 10px 15px; /* Adjusted link padding */
+  border-radius: 7px; /* Slightly more rounded links */
+  font-size: 1rem;
+  font-weight: 500; /* Medium font weight for links */
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #0056b3; /* Hover color - darker blue */
+  background-color: #f0f0f0; /* Light gray hover background */
+}
+
+
+main {
+  flex: 1;
+  padding: 40px 30px; /* Increased main padding */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.04); /* Even softer shadow for main content */
+  margin-bottom: 30px;
+}
+
+footer {
+  background-color: #f0f0f0;
+  padding: 25px; /* Increased footer padding */
+  text-align: center;
+  border-top: 1px solid #e0e0e0; /* Lighter footer border */
+  color: #777; /* Lighter footer text color */
+  font-size: 0.9rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Slightly wider product cards */
+  gap: 30px; /* Increased gap */
+}
+
+.product-card {
+  border: none; /* Removed border */
+  padding: 20px; /* Increased padding */
+  border-radius: 12px; /* More rounded cards */
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08); /* Softer card shadow */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.product-card:hover,
+.product-card:focus-within {
+  transform: scale(1.04); /* Slightly more scale up on hover */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* More pronounced shadow on hover */
+}
+
+
+.product-image {
+  max-width: 100%;
+  height: 280px; /* Increased image height */
+  object-fit: cover;
+  margin-bottom: 20px; /* Increased margin below image */
+  border-radius: 12px 12px 0 0; /* More rounded corners at the top of image */
+}
+
+.product-card h3 {
+  margin-top: 0;
+  margin-bottom: 15px; /* Increased margin below title */
+  color: #2d2d2d; /* Darker title color */
+  font-size: 1.3rem; /* Slightly larger title */
+  font-weight: 600; /* Semi-bold title */
+  letter-spacing: 0.3px;
+}
+
+.product-card .product-description {
+  margin-bottom: 15px; /* Increased margin below description */
+  color: #6a6a6a; /* Muted description color */
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.product-card .product-price {
+  font-weight: 700; /* Bold price */
+  margin-bottom: 25px; /* Increased margin below price */
+  color: #3a3a3a; /* Darker price color */
+  font-size: 1.2rem; /* Slightly larger price */
+}
+
+/* Refined Button Styles */
+.add-to-cart-button,
+.checkout-button,
+.pay-button,
+.remove-from-cart-button,
+.view-product-button,
+.shop-now-button,
+.quantity-button {
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
+  border: none;
+  padding: 14px 30px; /* Increased button padding */
+  border-radius: 8px; /* More rounded buttons */
+  cursor: pointer;
+  font-size: 1.1rem; /* Slightly larger button text */
+  font-weight: 600; /* Semi-bold button text */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.2); /* Button shadow matching primary color */
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.add-to-cart-button:hover,
+.checkout-button:hover,
+.pay-button:hover,
+.remove-from-cart-button:hover,
+.view-product-button:hover,
+.shop-now-button:hover,
+.quantity-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 123, 255, 0.3); /* Increased shadow on hover */
+}
+
+
+/* Cart Styles */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Increased gap between cart items */
+  margin-bottom: 30px; /* Increased margin below cart items */
+}
+
+.cart-item {
+  display: flex;
+  border: 1px solid #e0e0e0; /* Lighter border */
+  border-radius: 12px; /* More rounded cart items */
+  padding: 20px; /* Increased padding */
+  align-items: center;
+  background-color: #fff;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Softer shadow for cart items */
+}
+
+.cart-item-image {
+  max-width: 140px; /* Slightly larger cart item image */
+  height: auto;
+  margin-right: 25px; /* Increased right margin for image */
+  border-radius: 10px; /* Rounded image corners */
+}
+
+.cart-item-details {
+  flex: 1;
+  margin-right: 25px; /* Increased right margin for details */
+}
+
+.cart-item-details h3 {
+  margin-top: 0;
+  margin-bottom: 10px; /* Increased margin below item title */
+  font-size: 1.2rem; /* Slightly larger item title */
+  color: #2d2d2d; /* Darker item title color */
+  font-weight: 600;
+}
+
+.cart-item-price {
+  font-weight: 700; /* Bold price in cart */
+  margin-bottom: 15px; /* Increased margin below price */
+  color: #3a3a3a; /* Darker price color */
+  font-size: 1.1rem; /* Slightly larger price in cart */
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px; /* Increased margin below quantity controls */
+}
+
+.quantity-button {
+  background-color: #f8f8f8; /* Lighter background for quantity buttons */
+  border: 1px solid #d0d0d0; /* Lighter border for quantity buttons */
+  padding: 10px 15px; /* Adjusted padding */
+  border-radius: 7px; /* More rounded quantity buttons */
+  cursor: pointer;
+  margin: 0 10px; /* Increased margin */
+  color: #5b5b5b; /* Muted quantity button text color */
+  font-weight: 500;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.quantity-button:hover,
+.quantity-button:focus {
+  background-color: #eee;
+  border-color: #c0c0c0; /* Slightly darker border on hover */
+}
+
+.item-quantity {
+  font-weight: 700; /* Bold quantity text */
+  margin: 0 15px; /* Increased margin */
+  font-size: 1.1rem; /* Slightly larger quantity text */
+  color: #444; /* Darker quantity text */
+}
+
+
+.remove-from-cart-button {
+  background-color: #dc3545; /* Red color for remove button */
+  color: #fff;
+  border: none;
+  padding: 12px 25px; /* Adjusted padding */
+  border-radius: 8px; /* More rounded remove button */
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(220,53,69, 0.2); /* Shadow for remove button */
+}
+
+.remove-from-cart-button:hover,
+.remove-from-cart-button:focus {
+  background-color: #c82333; /* Darker red on hover */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220,53,69, 0.3); /* Increased shadow on hover */
+}
+
+.cart-total {
+  font-size: 1.5rem; /* Larger cart total text */
+  font-weight: 800; /* Even bolder cart total */
+  text-align: right;
+  margin-bottom: 35px; /* Increased margin below cart total */
+  color: #2d2d2d; /* Darker cart total color */
+}
+
+.checkout-button-container {
+  text-align: right;
+}
+
+.checkout-button {
+  background-color: #28a745; /* Green for checkout button */
+  color: #fff;
+  border: none;
+  padding: 16px 35px; /* Larger checkout button */
+  border-radius: 10px; /* More rounded checkout button */
+  cursor: pointer;
+  font-size: 1.2rem; /* Larger checkout button text */
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(40, 167, 69, 0.2); /* Shadow for checkout button */
+}
+
+.checkout-button:hover,
+.checkout-button:focus {
+  background-color: #218838; /* Darker green on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(40, 167, 69, 0.3); /* Increased shadow on hover */
+}
+
+/* Checkout Styles */
+.checkout-container {
+  display: flex;
+  gap: 50px; /* Increased gap in checkout container */
+}
+
+.checkout-form {
+  flex: 2;
+}
+
+.checkout-summary {
+  flex: 1;
+  background-color: #f8f8f8;
+  padding: 40px; /* Increased padding in checkout summary */
+  border-radius: 12px; /* More rounded checkout summary */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Softer shadow for checkout summary */
+}
+
+.checkout-summary h3 {
+  margin-top: 0;
+  margin-bottom: 25px; /* Increased margin below summary title */
+  font-size: 1.8rem; /* Larger summary title */
+  color: #2d2d2d; /* Darker summary title color */
+  font-weight: 600;
+}
+
+.order-items {
+  list-style: none;
+  padding: 0;
+}
+
+.order-item {
+  padding: 15px 0; /* Increased padding in order items */
+  border-bottom: 1px solid #e0e0e0; /* Lighter border */
+}
+
+.total-amount {
+  padding-top: 20px; /* Increased padding above total amount */
+  font-size: 1.5rem; /* Larger total amount text */
+  text-align: right;
+  font-weight: 800; /* Even bolder total amount */
+  color: #2d2d2d; /* Darker total amount color */
+}
+
+.pay-button {
+  background-color: #28a745; /* Green pay button */
+  color: #fff;
+  border: none;
+  padding: 16px 35px; /* Larger pay button */
+  border-radius: 10px; /* More rounded pay button */
+  cursor: pointer;
+  font-size: 1.2rem; /* Larger pay button text */
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 30px; /* Increased margin above pay button */
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(40, 167, 69, 0.2); /* Shadow for pay button */
+}
+
+.pay-button:hover,
+.pay-button:focus {
+  background-color: #218838; /* Darker green on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(40, 167, 69, 0.3); /* Increased shadow on hover */
+}
+
+.form-group {
+  margin-bottom: 25px; /* Increased margin between form groups */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px; /* Increased margin below label */
+  font-weight: 600; /* Semi-bold label */
+  color: #4a4a4a; /* Slightly darker label text */
+  font-size: 1.05rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px; /* Increased padding in form inputs */
+  border: 1px solid #c8c8c8; /* Slightly darker border for form inputs */
+  border-radius: 7px; /* More rounded form inputs */
+  font-size: 1rem;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.04); /* Inset shadow for form inputs */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Focus shadow */
+}
+
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px; /* Increased minimum height for textarea */
+}
+
+/* Home Page Styles */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 60px; /* Further increased gap between homepage sections */
+}
+
+.hero-section {
+  background-image: url('https://images.unsplash.com/photo-1592078615290-0a47e6488b28?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=800&ixid=M3w0NjYxOTB8MHwxfHNlYXJjaHwyfHxzaG9wcGluZyUyMGJhY2tncm91bmR8ZW58MHx8fHwxNjk3NjA3MDIwfDA&ixlib=rb-4.0.3&q=80&w=2000'); /* Even higher resolution background image */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 250px 20px; /* Even more padding for a larger hero area */
+  text-align: center;
+  border-radius: 12px; /* More rounded hero section */
+  position: relative;
+  margin-bottom: 40px; /* Increased margin below hero section */
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: inherit;
+}
+
+.hero-content {
+  max-width: 1100px; /* Even wider content area */
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section h1 {
+  font-size: 4rem; /* Even larger hero title */
+  margin-bottom: 30px; /* Increased margin below hero title */
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* Stronger text shadow */
+  letter-spacing: 1px; /* More letter spacing for title */
+  font-weight: 800; /* Bolder hero title */
+}
+
+.hero-section p {
+  font-size: 1.5rem; /* Even larger paragraph text */
+  color: #eee;
+  margin-bottom: 60px; /* Further increased margin below paragraph */
+  line-height: 1.9; /* Improved line height for hero paragraph */
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8); /* Stronger text shadow for paragraph */
+  font-weight: 400; /* Slightly heavier font weight for paragraph */
+}
+
+.shop-now-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px 45px; /* Even larger button */
+  border-radius: 10px; /* More rounded button */
+  text-decoration: none;
+  font-size: 1.4rem; /* Even larger font size for button */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4); /* Stronger button shadow */
+}
+
+.shop-now-button:hover,
+.shop-now-button:focus {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5); /* Even stronger shadow on hover */
+}
+
+/* Categories Section */
+.categories-section {
+  padding: 60px 20px; /* Increased padding for categories section */
+  background-color: #f8f8f8;
+  border-radius: 12px; /* More rounded categories section */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.categories-section h2 {
+  text-align: center;
+  margin-bottom: 60px; /* Increased margin below categories title */
+  color: #2d2d2d; /* Darker categories title color */
+  font-size: 3rem; /* Even larger categories section title */
+  letter-spacing: 1px; /* More letter spacing for categories title */
+  font-weight: 700; /* Bolder categories title */
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Wider category cards */
+  gap: 40px; /* Increased gap between category cards */
+}
+
+.category-card {
+  background-color: #fff;
+  border-radius: 12px; /* More rounded category cards */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* More pronounced shadow for category cards */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover,
+.category-card:focus-within {
+  transform: translateY(-10px); /* More pronounced lift on hover for categories */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Stronger shadow on hover for categories */
+}
+
+.category-card a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.category-image {
+  width: 100%;
+  height: 300px; /* Increased height for category images */
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover .category-image,
+.category-card:focus-within .category-image {
+  opacity: 0.9;
+}
+
+.category-card h3 {
+  text-align: center;
+  padding: 25px 30px; /* Increased padding for category titles */
+  margin: 0;
+  font-size: 1.4rem; /* Slightly larger category title */
+  color: #2d2d2d; /* Darker category title color */
+  font-weight: 600; /* Bolder category title */
+  letter-spacing: 0.5px;
+}
+
+
+.featured-products-section {
+  padding: 60px 20px; /* Increased padding for featured products section */
+}
+
+.featured-products-section h2 {
+  text-align: center;
+  margin-bottom: 60px; /* Increased margin below featured products title */
+  color: #2d2d2d; /* Darker featured products title color */
+  font-size: 3rem; /* Even larger featured products title */
+  letter-spacing: 1px; /* More letter spacing for featured products title */
+  font-weight: 700; /* Bolder featured products title */
+}
+
+.view-product-button {
+  display: inline-block;
+  padding: 14px 30px;
+  background-color: #eee;
+  color: #3a3a3a; /* Darker view product button text */
+  text-decoration: none;
+  border-radius: 7px; /* More rounded view product button */
+  font-size: 1.1rem; /* Slightly larger view product button text */
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for view product button */
+}
+
+.view-product-button:hover,
+.view-product-button:focus {
+  background-color: #ddd;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Increased shadow on hover */
+}
+
+
+/* Why Choose Us Section */
+.why-choose-us-section {
+  padding: 60px 20px; /* Increased padding for why choose us section */
+  background-color: #fff;
+  border-radius: 12px; /* More rounded why choose us section */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 40px; /* Increased margin below why choose us section */
+}
+
+.why-choose-us-section h2 {
+  text-align: center;
+  margin-bottom: 60px; /* Increased margin below why choose us title */
+  color: #2d2d2d; /* Darker why choose us title color */
+  font-size: 3rem; /* Even larger why choose us title */
+  letter-spacing: 1px; /* More letter spacing for why choose us title */
+  font-weight: 700; /* Bolder why choose us title */
+}
+
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Wider why choose us items */
+  gap: 40px; /* Increased gap between why choose us items */
+}
+
+.why-choose-item {
+  padding: 40px; /* Increased padding in why choose us items */
+  text-align: center;
+  border-radius: 12px; /* More rounded why choose us items */
+  background-color: #f8f8f8;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08); /* Subtle shadow for why choose us items */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-choose-item:hover,
+.why-choose-item:focus-within {
+  transform: translateY(-8px); /* More pronounced lift on hover for why choose us items */
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15); /* Increased shadow on hover for why choose us items */
+}
+
+.why-choose-item h3 {
+  margin-top: 0;
+  margin-bottom: 25px; /* Increased margin below why choose us item title */
+  color: #2d2d2d; /* Darker why choose us item title color */
+  font-size: 1.7rem; /* Larger why choose us item title */
+  font-weight: 600; /* Bolder why choose us item title */
+  letter-spacing: 0.5px;
+}
+
+.why-choose-item p {
+  color: #6a6a6a; /* Muted why choose us item text color */
+  line-height: 1.8;
+  font-size: 1.1rem; /* Slightly larger why choose us item text */
+}
+
+
+/* Testimonials Section */
+.testimonials-section {
+  padding: 60px 20px; /* Increased padding for testimonials section */
+  background-color: #f8f8f8;
+  border-radius: 12px; /* More rounded testimonials section */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 40px; /* Increased margin below testimonials section */
+}
+
+.testimonials-section h2 {
+  text-align: center;
+  margin-bottom: 60px; /* Increased margin below testimonials title */
+  color: #2d2d2d; /* Darker testimonials title color */
+  font-size: 3rem; /* Even larger testimonials section title */
+  letter-spacing: 1px; /* More letter spacing for testimonials section title */
+  font-weight: 700; /* Bolder testimonials title */
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Wider testimonial cards */
+  gap: 40px; /* Increased gap between testimonial cards */
+}
+
+.testimonial-card {
+  padding: 50px; /* Increased padding in testimonial cards */
+  border-radius: 12px; /* More rounded testimonial cards */
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1); /* More pronounced shadow for testimonial cards */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover,
+.testimonial-card:focus-within {
+  transform: translateY(-8px); /* More pronounced lift on hover for testimonials */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Stronger shadow on hover for testimonials */
+}
+
+
+.testimonial-card p {
+  font-style: italic;
+  color: #6a6a6a; /* Muted testimonial text color */
+  line-height: 1.9;
+  margin-bottom: 30px; /* Increased margin below testimonial text */
+  font-size: 1.2rem; /* Slightly larger testimonial text */
+}
+
+.testimonial-card .customer-name {
+  font-weight: 700; /* Bold customer name */
+  color: #2d2d2d; /* Darker customer name color */
+  font-size: 1.1rem; /* Slightly larger customer name */
+}
+
+
+.about-us-section {
+  padding: 50px 20px; /* Increased padding for about us section */
+  background-color: #f8f8f8;
+  border-radius: 12px; /* More rounded about us section */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 40px; /* Increased margin below about us section */
+}
+
+.about-us-section h2 {
+  margin-top: 0;
+  margin-bottom: 30px; /* Increased margin below about us title */
+  color: #2d2d2d; /* Darker about us title color */
+  font-size: 3rem; /* Even larger about us section title */
+  letter-spacing: 1px; /* More letter spacing for about us section title */
+  text-align: center;
+  font-weight: 700; /* Bolder about us title */
+}
+
+.about-us-section p {
+  color: #6a6a6a; /* Muted about us text color */
+  line-height: 1.8;
+  font-size: 1.1rem; /* Slightly larger about us text */
+}
 
 /* Product Details Page Styles */
 .product-details-page {
-  /* ... product details page styles ... */
+  display: flex;
+  padding: 50px; /* Increased padding for product details page */
+  gap: 60px; /* Increased gap on product details page */
+  background-color: #f8f8f8;
+  border-radius: 12px; /* More rounded product details page */
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 40px; /* Increased margin below product details page */
 }
 
 .product-details-content {
-  /* ... product details content styles ... */
+  display: flex;
+  gap: 60px; /* Increased gap in product details content */
 }
 
 
 .product-image-container {
   flex: 1;
-  max-width: 600px;
-  border-radius: 10px;
+  max-width: 700px; /* Wider image container */
+  border-radius: 12px; /* Rounded corners for image container */
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  position: relative; /* Position relative for navigation buttons */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* More pronounced shadow for image container */
 }
 
 .product-detail-image {
@@ -39,47 +758,55 @@ nav {
 }
 
 .product-info {
-  /* ... product info styles ... */
+  flex: 1.5;
+  padding: 30px; /* Increased padding in product info area */
+  background-color: #fff;
+  border-radius: 12px; /* More rounded product info area */
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08); /* Softer shadow for product info area */
 }
 
-/* Image Navigation Buttons */
-.image-navigation {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transform: translateY(-50%);
-  padding: 0 10px;
+.product-info h2 {
+  margin-top: 0;
+  margin-bottom: 25px; /* Increased margin below product name */
+  font-size: 3.2rem; /* Larger product name */
+  color: #2d2d2d; /* Darker product name color */
+  letter-spacing: 0.8px; /* More letter spacing for product name */
+  font-weight: 700; /* Bolder product name */
 }
 
-.image-navigation button {
-  background: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #333;
-  transition: background-color 0.3s ease;
+.product-detail-description {
+  font-size: 1.2rem; /* Slightly larger description text */
+  color: #6a6a6a; /* Muted description text color */
+  line-height: 1.9;
+  margin-bottom: 35px; /* Increased margin below description */
 }
 
-.image-navigation button:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+.product-detail-price {
+  font-size: 2rem; /* Larger price text */
+  font-weight: 800; /* Even bolder price */
+  color: #2d2d2d; /* Darker price color */
+  margin-bottom: 45px; /* Increased margin below price */
 }
 
+/* Ensure Add to Cart button on product details page is styled */
+.product-details-page .add-to-cart-button {
+  display: inline-block;
+  padding: 18px 40px; /* Larger Add to Cart button on details page */
+  font-size: 1.3rem; /* Larger font for Add to Cart button on details page */
+  border-radius: 10px; /* More rounded Add to Cart button on details page */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Shadow for Add to Cart button on details page */
+}
 
 /* Related Products Section Styles */
 .related-products-section {
-  /* ... related products section styles ... */
+  padding-top: 60px; /* Increased padding above related products */
 }
 
 .related-products-section h3 {
-  /* ... related products section h3 styles ... */
+  font-size: 2.2rem; /* Larger related products title */
+  color: #2d2d2d; /* Darker related products title color */
+  margin-bottom: 30px; /* Increased margin below related products title */
+  text-align: center;
+  letter-spacing: 0.8px; /* More letter spacing for related products title */
+  font-weight: 600; /* Bolder related products title */
 }

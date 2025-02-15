@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import logoImage from '../assets/logo.png'; // Import logo image
 
 function Navigation() {
   const { getItemCount } = useCart();
@@ -9,9 +8,7 @@ function Navigation() {
 
   return (
     <nav>
-      <Link to="/" className="logo">
-        <img src={logoImage} alt="Decency Hairs Logo" style={{ height: '45px' }} /> {/* Image Logo */}
-      </Link>
+      <Link to="/" className="logo">Decency Hairs</Link> {/* Logo as Link */}
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/products">Products</Link></li>

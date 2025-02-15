@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/ProductCard'; // Import ProductCard
 
 function ProductDetails() {
   const { productId } = useParams();
@@ -10,7 +10,6 @@ function ProductDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { addToCart } = useCart();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); // State for carousel
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -23,11 +22,11 @@ function ProductDetails() {
         }
         const data = await response.json();
         setProduct(data);
-        return data;
+        return data; // Return product data to use for fetching related products
       } catch (e) {
         setError(e);
         setProduct(null);
-        return null;
+        return null; // Return null in case of error
       } finally {
         setLoading(false);
       }
@@ -36,6 +35,7 @@ function ProductDetails() {
     const fetchRelatedProducts = async (productData) => {
       if (productData && productData.relatedProductIds) {
         try {
+          // Fetch each related product by its ID
           const relatedProductsData = await Promise.all(
             productData.relatedProductIds.map(id =>
               fetch(`/api/products/${id}`).then(res => res.json())
@@ -44,15 +44,15 @@ function ProductDetails() {
           setRelatedProducts(relatedProductsData);
         } catch (e) {
           console.error("Error fetching related products:", e);
-          setRelatedProducts([]);
+          setRelatedProducts([]); // Set to empty array in case of error
         }
       } else {
-        setRelatedProducts([]);
+        setRelatedProducts([]); // No related products IDs, set to empty array
       }
     };
 
     fetchProductDetails().then(productData => {
-      fetchRelatedProducts(productData);
+      fetchRelatedProducts(productData); // Fetch related products after fetching main product
     });
 
   }, [productId]);
@@ -63,19 +63,6 @@ function ProductDetails() {
       alert(`${product.name} added to cart!`);
     }
   };
-
-  const goToPreviousImage = () => {
-    setCurrentImageIndex(prevIndex => 
-      prevIndex > 0 ? prevIndex - 1 : product.imageUrls.length - 1
-    );
-  };
-
-  const goToNextImage = () => {
-    setCurrentImageIndex(nextIndex =>
-      nextIndex < product.imageUrls.length - 1 ? nextIndex + 1 : 0
-    );
-  };
-
 
   if (loading) {
     return <main>Loading product details...</main>;
@@ -91,20 +78,14 @@ function ProductDetails() {
 
   return (
     <main className="product-details-page">
-      <div className="product-details-content">
-        <div className="product-image-container">
-          <img src={product.imageUrls[currentImageIndex]} alt={product.name} className="product-detail-image" />
-          <div className="image-navigation">
-            <button onClick={goToPreviousImage}><</button>
-            <button onClick={goToNextImage}>></button>
-          </div>
-        </div>
-        <div className="product-info">
-          <h2>{product.name}</h2>
-          <p className="product-detail-description">{product.description}</p>
-          <p className="product-detail-price">Price: ${product.price}</p>
-          <button className="add-to-cart-button" onClick={handleAddToCart}>Add to Cart</button>
-        </div>
+      <div className="product-image-container">
+        <img src={product.imageUrl} alt={product.name} className="product-detail-image" />
+      </div>
+      <div className="product-info">
+        <h2>{product.name}</h2>
+        <p className="product-detail-description">{product.description}</p>
+        <p className="product-detail-price">Price: ${product.price}</p>
+        <button className="add-to-cart-button" onClick={handleAddToCart}>Add to Cart</button>
       </div>
 
       {/* Related Products Section */}

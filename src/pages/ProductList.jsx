@@ -1,13 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 
+// Helper function to filter products based on search term and category
+const filterProducts = (products, searchTerm, category) => {
+  const searchLower = searchTerm.toLowerCase();
+  return products.filter(product => {
+    const nameLower = product.name.toLowerCase();
+    const descriptionLower = product.description.toLowerCase();
+    const categoryMatch = category === 'all' || product.category === category;
+    const searchMatch = searchTerm === '' || nameLower.includes(searchLower) || descriptionLower.includes(searchLower);
+    return categoryMatch && searchMatch;
+  });
+};
+
+// Helper function to sort products
+const sortProducts = (products, sortBy) => {
+  switch (sortBy) {
+    case 'price-asc':
+      return [...products].sort((a, b) => a.price - b.price);
+    case 'price-desc':
+      return [...products].sort((a, b) => b.price - a.price);
+    default: // 'relevance' or any other case, return unsorted
+      return products;
+  }
+};
+
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('price'); // Default sorting by price
-  const [category, setCategory] = useState('all'); // Default category 'all'
+  const [sortBy, setSortBy] = useState('relevance');
+  const [category, setCategory] = useState('all');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,19 +62,21 @@ function ProductList() {
     return <main>Error loading products: {error.message}</main>;
   }
 
-  const filteredProducts = products.filter(product => {
-    return searchTerm === '' || product.name.toLowerCase().includes(searchTerm.toLowerCase()) || product.description.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  // Apply filtering and sorting using helper functions
+  const filteredProducts = filterProducts(products, searchTerm, category);
+  const sortedProducts = sortProducts(filteredProducts, sortBy);
 
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === 'price-asc') {
-      return a.price - b.price;
-    } else if (sortBy === 'price-desc') {
-      return b.price - a.price;
-    }
-    return 0; // Default sort (no sorting)
-  });
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleSortByChange = (e) => {
+    setSortBy(e.target.value);
+  };
 
   return (
     <main>
@@ -60,11 +86,11 @@ function ProductList() {
           type="text"
           placeholder="Search products..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearchChange}
         />
         <select
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={handleCategoryChange}
         >
           <option value="all">All Categories</option>
           <option value="wigs">Wigs</option>
@@ -76,9 +102,9 @@ function ProductList() {
         </select>
         <select
           value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
+          onChange={handleSortByChange}
         >
-          <option value="relevance">Sort by Relevance</option>
+          <option value="relevance">Sort by: Relevance</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
         </select>
